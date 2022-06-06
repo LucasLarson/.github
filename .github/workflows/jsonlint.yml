@@ -1,0 +1,49 @@
+---
+name: JSON Lint
+on:
+  push:
+
+jobs:
+  json:
+    name: Format JSON files and create a Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install linter
+        run: |
+          sudo npm install --location global @prantlf/jsonlint
+      - name: Lint
+        run: |
+          command find -- . \
+            -type f \
+            ! -path '*.git/*' \
+            ! -path '*node_modules/*' \
+            ! -path '*vscode*' \
+            '(' \
+            -name '*.JSON' -o \
+            -name '*.json' -o \
+            -name '*app-site-association' -o \
+            -name '.dccache' -o \
+            -name '.flutter' -o \
+            -name '.flutter_tool_state' -o \
+            -name '.imgbotconfig' -o \
+            -name '.vs-liveshare-keychain' -o \
+            -name '.vsconfig' -o \
+            -name '.whitesource' -o \
+            -name 'null.stats' \
+            ')' \
+            -exec jsonlint --continue --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "[autofix] format JSON content"
+          title: "[autofix] format JSON content"
+          body: >
+            [Auto-generated on run
+            #${{ github.run_id }}](https://github.com/${{ github.repository
+            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
+            action](https://github.com/${{ github.repository
+            }}/blob/${{ github.sha }}/.github/workflows/jsonlint.yml).
+          labels: CI/CD
+          branch: format-json
+          branch-suffix: timestamp
+          base: ${{ github.head_ref }}
