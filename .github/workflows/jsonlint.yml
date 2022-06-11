@@ -8,6 +8,12 @@ on:
     branches:
       - main
 
+concurrency:
+  # set new commit workflows to cancel those currently in progress
+  # https://github.com/kdeldycke/workflows/commit/8bee3ba877
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   json:
     name: Format JSON files and create a Pull Request
