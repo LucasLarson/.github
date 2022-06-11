@@ -33,6 +33,7 @@ jobs:
             '(' \
             -name '*.JSON' -o \
             -name '*.json' -o \
+            -name '*.stats' -o \
             -name '*app-site-association' -o \
             -name '.dccache' -o \
             -name '.flutter' -o \
@@ -40,8 +41,7 @@ jobs:
             -name '.imgbotconfig' -o \
             -name '.vs-liveshare-keychain' -o \
             -name '.vsconfig' -o \
-            -name '.whitesource' -o \
-            -name 'null.stats' \
+            -name '.whitesource' \
             ')' \
             -exec jsonlint --continue --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
       - uses: peter-evans/create-pull-request@v4
