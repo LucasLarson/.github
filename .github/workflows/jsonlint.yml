@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install linter
         run: |
-          sudo npm install --location global @prantlf/jsonlint
+          command npm install @prantlf/jsonlint
       - name: Lint
         run: |
           command find -- . \
@@ -43,7 +43,7 @@ jobs:
             -name '.vsconfig' -o \
             -name '.whitesource' \
             ')' \
-            -exec jsonlint --continue --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
+            -exec npm exec -- @prantlf/jsonlint --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
       - uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "[autofix] format JSON content"
