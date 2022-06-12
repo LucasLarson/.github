@@ -2,6 +2,17 @@
 name: JSON Lint
 on:
   push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  # set new commit workflows to cancel those currently in progress
+  # https://github.com/kdeldycke/workflows/commit/8bee3ba877
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   json:
@@ -11,17 +22,18 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install linter
         run: |
-          sudo npm install --location global @prantlf/jsonlint
+          command npm install @prantlf/jsonlint
       - name: Lint
         run: |
           command find -- . \
             -type f \
-            ! -path '*.git/*' \
-            ! -path '*node_modules/*' \
+            ! -path '*/.git/*' \
+            ! -path '*/node_modules/*' \
             ! -path '*vscode*' \
             '(' \
             -name '*.JSON' -o \
             -name '*.json' -o \
+            -name '*.stats' -o \
             -name '*app-site-association' -o \
             -name '.dccache' -o \
             -name '.flutter' -o \
@@ -29,21 +41,19 @@ jobs:
             -name '.imgbotconfig' -o \
             -name '.vs-liveshare-keychain' -o \
             -name '.vsconfig' -o \
-            -name '.whitesource' -o \
-            -name 'null.stats' \
+            -name '.whitesource' \
             ')' \
-            -exec jsonlint --continue --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
+            -exec npm exec -- @prantlf/jsonlint --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
       - uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "[autofix] format JSON content"
           title: "[autofix] format JSON content"
           body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.sha }}/.github/workflows/jsonlint.yml).
-          labels: CI/CD
+            Auto-generated on [run #${{ github.run_id }}](${{
+            github.event.repository.html_url }}/actions/runs/${{ github.run_id
+            }}) as defined by [`jsonlint.yml` workflow](${{
+            github.event.repository.html_url }}/blob/${{ github.sha
+            }}/.github/workflows/jsonlint.yml).
+          labels: enhancement, github_actions
           branch: format-json
-          branch-suffix: timestamp
           base: ${{ github.head_ref }}
