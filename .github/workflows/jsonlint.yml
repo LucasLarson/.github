@@ -2,9 +2,7 @@
 name: JSON Lint
 on:
   push:
-    branches:
-      - main
-  pull_request:
+    # target only the default branch to avoid auto-fixing recursion
     branches:
       - main
 
