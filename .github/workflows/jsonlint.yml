@@ -9,9 +9,10 @@ on:
       - main
 
 concurrency:
-  # set new commit workflows to cancel those currently in progress
+  # cancel any in-progress job or run
   # https://github.com/kdeldycke/workflows/commit/8bee3ba877
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  # https://docs.github.com/actions/using-jobs/using-concurrency
+  group: ${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
