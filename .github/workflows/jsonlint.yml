@@ -23,7 +23,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install linter
         run: |
-          command npm install @prantlf/jsonlint
+          command sudo npm install \
+            --location=global \
+            --loglevel=verbose \
+            -- @prantlf/jsonlint
       - name: Lint
         run: |
           command find -- . \
