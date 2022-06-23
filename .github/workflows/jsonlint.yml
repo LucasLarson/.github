@@ -74,7 +74,12 @@ jobs:
             -name '.watchmanconfig' -o \
             -name '.whitesource' \
             ')' \
-            -exec npm exec -- @prantlf/jsonlint --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
+            -exec npm exec -- @prantlf/jsonlint \
+              --in-place \
+              --prune-comments \
+              --trailing-newline \
+              --trim-trailing-commas \
+              -- '{}' ';'
       - uses: peter-evans/create-pull-request@v4
         with:
           commit-message: "[autofix] format JSON content"
