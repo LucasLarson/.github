@@ -87,7 +87,7 @@ jobs:
           body: >
             Auto-generated on [run #${{ github.run_id }}](${{
             github.event.repository.html_url }}/actions/runs/${{ github.run_id
-            }}) as defined by [`jsonlint.yml` workflow](${{
+            }}) as defined by [workflow action](${{
             github.event.repository.html_url }}/blob/${{ github.sha
             }}/.github/workflows/jsonlint.yml).
           labels: enhancement, github_actions
