@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  json:
+  format-json:
     name: Format JSON files and create a Pull Request
     runs-on: ubuntu-latest
     steps:
