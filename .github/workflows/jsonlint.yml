@@ -35,16 +35,43 @@ jobs:
             ! -path '*/node_modules/*' \
             ! -path '*vscode*' \
             '(' \
+            -name '*.4DForm' -o \
+            -name '*.4DProject' -o \
+            -name '*.avsc' -o \
+            -name '*.geojson' -o \
+            -name '*.gltf' -o \
+            -name '*.har' -o \
+            -name '*.ice' -o \
             -name '*.JSON' -o \
             -name '*.json' -o \
+            -name '*.JSON-tmLanguage' -o \
+            -name '*.JSON5' -o \
+            -name '*.json5' -o \
+            -name '*.jsonl' -o \
+            -name '*.mcmeta' -o \
             -name '*.stats' -o \
+            -name '*.tfstate' -o \
+            -name '*.tfstate.backup' -o \
+            -name '*.topojson' -o \
+            -name '*.webapp' -o \
+            -name '*.webmanifest' -o \
+            -name '*.yy' -o \
+            -name '*.yyp' -o \
             -name '*app-site-association' -o \
+            -name '.arcconfig' -o \
+            -name '.auto-changelog' -o \
+            -name '.c8rc' -o \
             -name '.dccache' -o \
             -name '.flutter' -o \
             -name '.flutter_tool_state' -o \
+            -name '.htmlhintrc' -o \
             -name '.imgbotconfig' -o \
+            -name '.nycrc' -o \
+            -name '.tern-config' -o \
+            -name '.tern-project' -o \
             -name '.vs-liveshare-keychain' -o \
             -name '.vsconfig' -o \
+            -name '.watchmanconfig' -o \
             -name '.whitesource' \
             ')' \
             -exec npm exec -- @prantlf/jsonlint --in-place --prune-comments --trailing-newline --trim-trailing-commas -- '{}' ';'
