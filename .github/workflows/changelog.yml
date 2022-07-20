@@ -70,6 +70,19 @@ jobs:
                 ')' |
                 command sed -e 's/^.\///'
             )"
+      - name: Repair changelog credit
+        run: |
+          command find -- . \
+            -maxdepth 1 \
+            -type f \
+            -name '*.m*d*' \
+            '(' \
+            -name 'change*log*' -o \
+            -name 'CHANGE*LOG*' \
+            ')' \
+            -print \
+            -exec sed -i 's/This Changelog/This changelog/' '{}' '+' \
+            -exec sed -i 's/automatically generated/[automatically generated](.\/.github\/workflows\/changelog.yml)/' '{}' ';'
       - name: Lint changelog
         run: |
           command find -- . \
