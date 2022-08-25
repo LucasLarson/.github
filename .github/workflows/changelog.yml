@@ -87,8 +87,11 @@ jobs:
             -name 'CHANGE*LOG*' \
             ')' \
             -print \
-            -exec sed -i 's/This Changelog/This changelog/' '{}' '+' \
-            -exec sed -i 's/automatically generated/[automatically generated](.\/.github\/workflows\/changelog.yml)/' '{}' ';'
+            -exec sed -i \
+            -e 's/This Changelog/This changelog/' \
+            -e 's/automatically generated/\[automatically generated\]()/' \
+            -e 's/\]()/\](.\/.github\/workflows\/changelog.yml)/' \
+            -e 's/generator)\*/generator).\*/' '{}' '+'
       - name: Lint changelog
         run: |
           command find -- . \
