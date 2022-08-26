@@ -47,6 +47,7 @@ jobs:
             -name '*.JSON5' -o \
             -name '*.json5' -o \
             -name '*.jsonl' -o \
+            -name '*.jsonld' -o \
             -name '*.maxhelp' -o \
             -name '*.maxpat' -o \
             -name '*.maxproj' -o \
