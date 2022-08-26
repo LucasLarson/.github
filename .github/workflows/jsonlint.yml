@@ -71,7 +71,8 @@ jobs:
             -name '.vs-liveshare-keychain' -o \
             -name '.vsconfig' -o \
             -name '.watchmanconfig' -o \
-            -name '.whitesource' \
+            -name '.whitesource' -o \
+            -name 'mcmod.info' \
             ')' \
             -print \
             -exec sh -v -x -c '
