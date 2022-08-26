@@ -37,6 +37,7 @@ jobs:
             -name '*.4DForm' -o \
             -name '*.4DProject' -o \
             -name '*.avsc' -o \
+            -name '*.cy' -o \
             -name '*.geojson' -o \
             -name '*.gltf' -o \
             -name '*.har' -o \
