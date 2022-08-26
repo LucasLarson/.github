@@ -33,6 +33,7 @@ jobs:
             ! -path '*/node_modules/*' \
             ! -path '*vscode*' \
             '(' \
+            -name '*.json' -o \
             -name '*.4DForm' -o \
             -name '*.4DProject' -o \
             -name '*.avsc' -o \
@@ -41,7 +42,6 @@ jobs:
             -name '*.har' -o \
             -name '*.ice' -o \
             -name '*.JSON' -o \
-            -name '*.json' -o \
             -name '*.JSON-tmLanguage' -o \
             -name '*.JSON5' -o \
             -name '*.json5' -o \
