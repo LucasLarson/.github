@@ -47,7 +47,11 @@ jobs:
             -name '*.JSON5' -o \
             -name '*.json5' -o \
             -name '*.jsonl' -o \
+            -name '*.maxhelp' -o \
+            -name '*.maxpat' -o \
+            -name '*.maxproj' -o \
             -name '*.mcmeta' -o \
+            -name '*.mxt' -o \
             -name '*.stats' -o \
             -name '*.tfstate' -o \
             -name '*.tfstate.backup' -o \
