@@ -78,11 +78,13 @@ jobs:
             --output "${file-}"
       - name: Repair changelog credit
         run: |
-          command sed -i \
+          command sed \
             -e 's/This Changelog/This changelog/' \
             -e 's/automatically generated/\[automatically generated\]()/' \
             -e 's/\]()/\](.\/.github\/workflows\/changelog.yml)/' \
-            -e 's/generator)\*/generator).\*/' ./"${file-}"
+            -e 's/generator)\*/generator).\*/' \
+            ./"${file-}" >./"${file%.*}"_temporary_"${file##*.}" &&
+            command mv -f -- ./"${file%.*}"_temporary_"${file##*.}" ./"${file-}"
       - name: Lint changelog
         run: |
           command npm exec -- markdownlint --fix -- ./"${file-}"
