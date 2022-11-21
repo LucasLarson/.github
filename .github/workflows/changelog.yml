@@ -51,27 +51,17 @@ jobs:
         run: |
           command github_changelog_generator \
             --user "$(
-              command git config --get-regexp -- 'remote.*url' |
+              command git ls-remote --get-url |
                 command sed -E \
                   -e 's/(git@|(git|https?|ssh):\/\/)//' \
                   -e 's/:/\//' \
-                  -e 's/\.git$//' |
-                command awk -F '/' '{print $2}' |
-                command head -n 1
+                  -e 's/[^\/]*\/([^\/]*)\/.*/\1/'
             )" \
             --project "$(
-              command git remote get-url "$(
-                {
-                  command git config --get --worktree checkout.defaultRemote ||
-                    command git config --get --local checkout.defaultRemote ||
-                    command git config --get --system checkout.defaultRemote ||
-                    command git config --get --global checkout.defaultRemote
-                } 2>/dev/null ||
-                  printf 'origin'
-              )" |
-                command tr -d '[:space:]' |
-                command xargs basename |
-                command sed -e 's/\.git$//'
+              command git ls-remote --get-url |
+                command sed \
+                  -e 's/.*\///' \
+                  -e 's/\.git$//'
             )" \
             --token ${{ secrets.GITHUB_TOKEN || secrets.PAT }} \
             --exclude-labels 'duplicate,question,invalid,wontfix,nodoc' \
