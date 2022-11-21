@@ -26,17 +26,27 @@ jobs:
           command npm install markdownlint-cli
       - name: Ensure changelog exists
         run: |
-          test -n "$(
-            command find -- . \
-              -maxdepth 1 \
-              -type f \
-              -name '*.m*d*' \
-              '(' \
-              -name 'change*log*' -o \
-              -name 'CHANGE*LOG*' \
-              ')'
-          )" ||
-            command touch -- ./changelog.md
+          file="$(
+            (
+              command find -- . \
+                -maxdepth 1 \
+                -type f \
+                -name '*.m*d*' \
+                '(' \
+                -name 'change*log*' -o \
+                -name 'CHANGE*LOG*' \
+                ')' \
+                -print &
+            ) |
+              # print only the first match
+              command head -n 1
+          )"
+          # define changelog location if none is found
+          file="${file:=./changelog.md}"
+          # ensure the file exists
+          command touch -- "${file-}"
+          # trim the initial `./` for `github_changelog_generator`
+          file="${file#*[.][/]}"
       - name: Create local changes
         run: |
           command github_changelog_generator \
@@ -65,59 +75,22 @@ jobs:
             )" \
             --token ${{ secrets.GITHUB_TOKEN || secrets.PAT }} \
             --exclude-labels 'duplicate,question,invalid,wontfix,nodoc' \
-            --output "$(
-              command find -- . \
-                -maxdepth 1 \
-                -type f \
-                -name '*.m*d*' \
-                '(' \
-                -name 'change*log*' -o \
-                -name 'CHANGE*LOG*' \
-                ')' |
-                command sed -e 's/^.\///'
-            )"
+            --output "${file-}"
       - name: Repair changelog credit
         run: |
-          command find -- . \
-            -maxdepth 1 \
-            -type f \
-            -name '*.m*d*' \
-            '(' \
-            -name 'change*log*' -o \
-            -name 'CHANGE*LOG*' \
-            ')' \
-            -print \
-            -exec sed -i \
+          command sed -i \
             -e 's/This Changelog/This changelog/' \
             -e 's/automatically generated/\[automatically generated\]()/' \
             -e 's/\]()/\](.\/.github\/workflows\/changelog.yml)/' \
-            -e 's/generator)\*/generator).\*/' '{}' '+'
+            -e 's/generator)\*/generator).\*/' ./"${file-}"
       - name: Lint changelog
         run: |
-          command find -- . \
-            -maxdepth 1 \
-            -type f \
-            -name '*.m*d*' \
-            '(' \
-            -name 'change*log*' -o \
-            -name 'CHANGE*LOG*' \
-            ')' \
-            -print \
-            -exec npm exec -- markdownlint --fix -- '{}' ';'
+          command npm exec -- markdownlint --fix -- ./"${file-}"
       - name: Commit files
         run: |
           command git config -- user.email 'actions@github.com'
           command git config -- user.name 'GitHub'
-          command find -- . \
-            -maxdepth 1 \
-            -type f \
-            -name '*.m*d*' \
-            '(' \
-            -name 'change*log*' -o \
-            -name 'CHANGE*LOG*' \
-            ')' \
-            -print \
-            -exec git add --verbose -- '{}' ';'
+          command git add --verbose -- ./"${file-}"
           command git commit --verbose \
             --message='update changelog' ||
             exit 0
