@@ -53,7 +53,7 @@ jobs:
             --user "$(
               command git config --get-regexp -- 'remote.*url' |
                 command sed -E \
-                  -e 's/(git@|https:\/\/)//' \
+                  -e 's/(git@|(git|https?|ssh):\/\/)//' \
                   -e 's/:/\//' \
                   -e 's/\.git$//' |
                 command awk -F '/' '{print $2}' |
