@@ -74,7 +74,8 @@ jobs:
             ./"${file-}" >./"${file%.*}"_temporary_"${file##*.}" &&
             command mv -f -- ./"${file%.*}"_temporary_"${file##*.}" ./"${file-}"
           # lint changelog
-          command npm exec -- markdownlint --fix -- ./"${file-}"
+          command npm exec -- markdownlint --fix -- ./"${file-}" ||
+            :
           # commit files
           command git config -- user.email 'actions@github.com'
           command git config -- user.name 'GitHub'
