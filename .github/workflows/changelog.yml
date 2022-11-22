@@ -83,8 +83,7 @@ jobs:
           command git config -- user.email 'actions@github.com'
           command git config -- user.name 'GitHub'
           command git add --verbose -- ./"${file-}"
-          command git commit --verbose \
-            --message='update changelog' ||
+          command git commit --verbose --message='update changelog' ||
             exit 0
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
