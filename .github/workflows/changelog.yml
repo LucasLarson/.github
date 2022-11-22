@@ -24,7 +24,7 @@ jobs:
         run: |
           command npm install markdownlint
           command npm install markdownlint-cli
-      - name: Ensure changelog exists
+      - name: Build and commit changelog
         run: |
           file="$(
             (
@@ -47,8 +47,7 @@ jobs:
           command touch -- "${file-}"
           # trim the initial `./` for `github_changelog_generator`
           file="${file#*[.][/]}"
-      - name: Create local changes
-        run: |
+          # create local changes
           command github_changelog_generator \
             --user "$(
               command git ls-remote --get-url |
@@ -66,8 +65,7 @@ jobs:
             --token ${{ secrets.GITHUB_TOKEN || secrets.PAT }} \
             --exclude-labels 'duplicate,question,invalid,wontfix,nodoc' \
             --output "${file-}"
-      - name: Repair changelog credit
-        run: |
+          # repair changelog credit
           command sed \
             -e 's/This Changelog/This changelog/' \
             -e 's/automatically generated/\[automatically generated\]()/' \
@@ -75,11 +73,9 @@ jobs:
             -e 's/generator)\*/generator).\*/' \
             ./"${file-}" >./"${file%.*}"_temporary_"${file##*.}" &&
             command mv -f -- ./"${file%.*}"_temporary_"${file##*.}" ./"${file-}"
-      - name: Lint changelog
-        run: |
+          # lint changelog
           command npm exec -- markdownlint --fix -- ./"${file-}"
-      - name: Commit files
-        run: |
+          # commit files
           command git config -- user.email 'actions@github.com'
           command git config -- user.name 'GitHub'
           command git add --verbose -- ./"${file-}"
