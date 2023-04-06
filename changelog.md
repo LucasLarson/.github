@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- bump peter-evans/create-pull-request from 4 to 5 [\#16](https://github.com/LucasLarson/.github/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Configure Renovate [\#12](https://github.com/LucasLarson/.github/pull/12) ([renovate[bot]](https://github.com/apps/renovate))
 - repair `jsonlint` workflow [\#5](https://github.com/LucasLarson/.github/pull/5) ([LucasLarson](https://github.com/LucasLarson))
 - \[autofix\] format JSON content [\#4](https://github.com/LucasLarson/.github/pull/4) ([github-actions[bot]](https://github.com/apps/github-actions))
