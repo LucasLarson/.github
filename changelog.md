@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- bump github/super-linter from 4 to 5 [\#17](https://github.com/LucasLarson/.github/pull/17) ([dependabot[bot]](https://github.com/apps/dependabot))
 - bump peter-evans/create-pull-request from 4 to 5 [\#16](https://github.com/LucasLarson/.github/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Configure Renovate [\#12](https://github.com/LucasLarson/.github/pull/12) ([renovate[bot]](https://github.com/apps/renovate))
 - repair `jsonlint` workflow [\#5](https://github.com/LucasLarson/.github/pull/5) ([LucasLarson](https://github.com/LucasLarson))
