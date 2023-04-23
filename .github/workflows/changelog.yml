@@ -31,26 +31,34 @@ jobs:
       - name: Build and commit changelog
         run: |
           file="$(
-            (
-              command find -- . \
-                -maxdepth 1 \
-                -type f \
-                -name '*.m*d*' \
-                '(' \
-                -name 'change*log*' -o \
-                -name 'CHANGE*LOG*' \
-                ')' \
-                -print &
-            ) |
-              # print only the first match
-              command head -n 1
+            cd "$(
+              # attempt relative-path access
+              command git rev-parse \
+                --path-format=relative \
+                --show-toplevel
+              )" 2>/dev/null ||
+              cd "$(
+                command git rev-parse \
+                --show-toplevel
+              )" ||
+              exit "${?:-1}"
+            # find the Markdown changelog with the latest commit
+            command find -- "${PWD%/}" \
+              -path "${PWD%/}"'/[Cc][Hh][Aa][Nn][Gg][Ee]*[Ll][Oo][Gg]*' \
+              -path '.[Mm]*[Dd]*' \
+              -type f \
+              -exec sh -c '
+          command git log \
+            --max-count=1 \
+            --pretty=tformat:'\''%at '\''"${1-}"
+              ' _ {} ';' |
+              LC_ALL='C' command sort -n -r |
+              command sed -n -e '1s/.*\///g; 1p; q;'
           )"
           # define changelog location if none is found
-          file="${file:=./changelog.md}"
+          file="${file:=changelog.md}"
           # ensure the file exists
           command touch -- "${file-}"
-          # trim the initial `./` for `github_changelog_generator`
-          file="${file#*[.][/]}"
           # create local changes
           command github_changelog_generator \
             --user "$(
