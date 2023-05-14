@@ -93,6 +93,7 @@ jobs:
           # commit files
           command git config -- user.email 'actions@github.com'
           command git config -- user.name 'GitHub'
+          command git restore --progress --staged -- .
           command git add --verbose -- ./"${file-}"
           command git commit --verbose --message='update changelog' ||
             exit 0
