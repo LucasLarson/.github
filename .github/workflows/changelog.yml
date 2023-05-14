@@ -68,7 +68,7 @@ jobs:
                   -e 'y/:/\//' \
                   -e '# remove everything except the second-to-last' \
                   -e '# forward slash-delimited field' \
-                  -e 's/.*\/\([^/]*\)\/[^/]*/\1/' \
+                  -e 's/.*\/\([^/]*\)\/[^/]*/\1/'
             )" \
             --project "$(
               command git ls-remote --get-url |
