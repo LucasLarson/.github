@@ -11,14 +11,14 @@
 **Merged pull requests:**
 
 - find Markdown changelog with latest commit [\#19](https://github.com/LucasLarson/.github/pull/19) ([LucasLarson](https://github.com/LucasLarson))
-- bump github/super-linter from 4 to 5 [\#17](https://github.com/LucasLarson/.github/pull/17) ([dependabot[bot]](https://github.com/apps/dependabot))
-- bump peter-evans/create-pull-request from 4 to 5 [\#16](https://github.com/LucasLarson/.github/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Configure Renovate [\#12](https://github.com/LucasLarson/.github/pull/12) ([renovate[bot]](https://github.com/apps/renovate))
+- bump github/super-linter from 4 to 5 [\#17](https://github.com/LucasLarson/.github/pull/17) ([dependabot[bot]](<https://github.com/apps/dependabot>))
+- bump peter-evans/create-pull-request from 4 to 5 [\#16](https://github.com/LucasLarson/.github/pull/16) ([dependabot[bot]](<https://github.com/apps/dependabot>))
+- Configure Renovate [\#12](https://github.com/LucasLarson/.github/pull/12) ([renovate[bot]](<https://github.com/apps/renovate>))
 - repair `jsonlint` workflow [\#5](https://github.com/LucasLarson/.github/pull/5) ([LucasLarson](https://github.com/LucasLarson))
-- \[autofix\] format JSON content [\#4](https://github.com/LucasLarson/.github/pull/4) ([github-actions[bot]](https://github.com/apps/github-actions))
-- \[autofix\] format JSON content [\#3](https://github.com/LucasLarson/.github/pull/3) ([github-actions[bot]](https://github.com/apps/github-actions))
-- \[autofix\] format JSON content [\#2](https://github.com/LucasLarson/.github/pull/2) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Configure Mend Bolt for GitHub [\#1](https://github.com/LucasLarson/.github/pull/1) ([mend-bolt-for-github[bot]](https://github.com/apps/mend-bolt-for-github))
+- \[autofix\] format JSON content [\#4](https://github.com/LucasLarson/.github/pull/4) ([github-actions[bot]](<https://github.com/apps/github-actions>))
+- \[autofix\] format JSON content [\#3](https://github.com/LucasLarson/.github/pull/3) ([github-actions[bot]](<https://github.com/apps/github-actions>))
+- \[autofix\] format JSON content [\#2](https://github.com/LucasLarson/.github/pull/2) ([github-actions[bot]](<https://github.com/apps/github-actions>))
+- Configure Mend Bolt for GitHub [\#1](https://github.com/LucasLarson/.github/pull/1) ([mend-bolt-for-github[bot]](<https://github.com/apps/mend-bolt-for-github>))
 
 ## [v1.0.0](https://github.com/LucasLarson/.github/tree/v1.0.0) (2022-06-06)
 
