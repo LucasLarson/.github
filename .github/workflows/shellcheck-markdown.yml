@@ -1,7 +1,8 @@
 ---
 name: Shellcheck code in Markdown
 
-on: [push]
+on:
+  push:
 
 jobs:
   build:
