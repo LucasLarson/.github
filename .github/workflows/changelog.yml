@@ -6,6 +6,7 @@ on:
     branches:
       - main
 
+# cancel any in-progress job or run
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
