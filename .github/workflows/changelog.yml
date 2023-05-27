@@ -65,7 +65,7 @@ jobs:
               command git ls-remote --get-url |
                 command sed \
                   -e '# replace colons with forward slashes' \
-                  -e 'y/:/\//' \
+                  -e 's/:/\//g' \
                   -e '# remove everything except the second-to-last' \
                   -e '# forward slash-delimited field' \
                   -e 's/.*\/\([^/]*\)\/[^/]*/\1/'
