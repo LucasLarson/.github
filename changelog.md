@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- bump actions/checkout from 3 to 4 [\#22](https://github.com/LucasLarson/.github/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
 - reduce funding sources [\#20](https://github.com/LucasLarson/.github/pull/20) ([LucasLarson](https://github.com/LucasLarson))
 - find Markdown changelog with latest commit [\#19](https://github.com/LucasLarson/.github/pull/19) ([LucasLarson](https://github.com/LucasLarson))
 - bump github/super-linter from 4 to 5 [\#17](https://github.com/LucasLarson/.github/pull/17) ([dependabot[bot]](https://github.com/apps/dependabot))
