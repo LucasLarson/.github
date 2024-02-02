@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- bump peter-evans/create-pull-request from v5 to v6 [\#25](https://github.com/LucasLarson/.github/pull/25) ([renovate[bot]](https://github.com/apps/renovate))
 - bump ad-m/github-push-action from v0.6.0 to v0.8.0 [\#24](https://github.com/LucasLarson/.github/pull/24) ([renovate[bot]](https://github.com/apps/renovate))
 - bump actions/checkout from 3 to 4 [\#22](https://github.com/LucasLarson/.github/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
 - reduce funding sources [\#20](https://github.com/LucasLarson/.github/pull/20) ([LucasLarson](https://github.com/LucasLarson))
