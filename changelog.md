@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- fix: ensure safer Super-Linter permissions \(CKV2\_GHA\_1\) [\#29](https://github.com/LucasLarson/.github/pull/29) ([LucasLarson](https://github.com/LucasLarson))
 - add automated changelog generator [\#10](https://github.com/LucasLarson/.github/pull/10) ([LucasLarson](https://github.com/LucasLarson))
 
 **Merged pull requests:**
