@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 # cancel any in-progress job or run
 concurrency:
   group: ${{ github.ref }}
