@@ -3,9 +3,7 @@
   "autodiscover": true,
   "commitMessageAction": "bump",
   "commitMessageTopic": "{{depName}}",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "ignorePaths": [
     "**/*copilot*",
     "**/*vscode*",
