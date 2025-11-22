@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Install linter
         run: |
           command sudo npm install \
@@ -89,7 +91,7 @@ jobs:
               command git hash-object -- "{}" \
             )" = "417b7b5370df81a7316ee9f983437444afdae432" && \
               command git restore --progress --source=HEAD -- "{}"' ';'
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v7 # zizmor: ignore[unpinned-uses]
         with:
           commit-message: "[autofix] format JSON content"
           title: "[autofix] format JSON content"
