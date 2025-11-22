@@ -43,16 +43,17 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # Super-Linter requires full repository history for analysis
           fetch-depth: 0
+          persist-credentials: false
 
       ################################
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: super-linter/super-linter@v8
+        uses: super-linter/super-linter@v8 # zizmor: ignore[unpinned-uses]
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main

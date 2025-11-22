@@ -14,7 +14,9 @@ jobs:
       run:
         shell: sh
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Run shellcheck
         run: |
           # test shell syntax of Markdown code snippets
